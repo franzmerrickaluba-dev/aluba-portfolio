@@ -1,5 +1,6 @@
 import Background3D from '../components/Background3D'
 import Tilt from 'react-parallax-tilt'
+import { FormEvent } from 'react'
 
 type Capability = {
   title: string
@@ -190,6 +191,19 @@ function Icon({
 }
 
 export default function About() {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const message = formData.get('message')
+    
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`)
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)
+    
+    window.location.href = `mailto:franzaluba04@gmail.com?subject=${subject}&body=${body}`
+  }
+
   return (
     <div className="portfolio-shell" id="about-page">
       <header className="topbar">
@@ -357,7 +371,7 @@ export default function About() {
 
             <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={3} tiltMaxAngleY={3} style={{ display: 'flex', flexDirection: 'column' }}>
               <div className="about-form-card sketchy-card" style={{ flexGrow: 1 }}>
-                <form className="about-form pop-out-sm">
+                <form className="about-form pop-out-sm" onSubmit={handleSubmit}>
                 <div className="about-form-field">
                   <label htmlFor="name">Full Name</label>
                   <input id="name" name="name" type="text" placeholder="" />
