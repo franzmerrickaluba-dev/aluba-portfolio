@@ -1,3 +1,6 @@
+import Background3D from '../components/Background3D'
+import Tilt from 'react-parallax-tilt'
+
 type NavLink = {
   label: string
   href: string
@@ -154,7 +157,8 @@ export default function Home() {
 
       <main>
         <section className="hero-section container section-space">
-          <div className="hero-copy">
+          <Background3D />
+          <div className="hero-copy" style={{ position: 'relative', zIndex: 1 }}>
             <div className="hero-note">
               <p>Drafting the future</p>
               <Icon name="draw" className="hero-note-icon" />
@@ -201,95 +205,104 @@ export default function Home() {
             </a>
           </div>
 
-          <article className="featured-card">
-            <div className="featured-floating-mark">
-              <Icon name="unfold" />
-            </div>
+          <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+            <article className="featured-card pop-out-sm">
+              <div className="featured-floating-mark">
+                <Icon name="unfold" />
+              </div>
 
-            <div className="featured-image-frame">
-              <a href="/work/kodi-code">
-                <img
-                  className="featured-image"
-                  src="/kodicode-dashboard.jpg"
-                  alt="Kodi Code student dashboard showing class cards, sidebar navigation, search, and a join class button."
-                />
-              </a>
+              <div className="featured-image-frame">
+                <a href="/work/kodi-code">
+                  <img
+                    className="featured-image"
+                    src="/kodicode-dashboard.jpg"
+                    alt="Kodi Code student dashboard showing class cards, sidebar navigation, search, and a join class button."
+                  />
+                </a>
 
-              <div className="spec-card">
-                <p className="spec-label">Technical Specification</p>
-                <p className="spec-text">
-                  A programming plagiarism detection system for C and Java assignments with separate student and teacher workflows, class management, and automated grading.
-                </p>
-                <div className="spec-tags">
-                  <span>React</span>
-                  <span>PHP API</span>
-                  <span>MySQL</span>
+                <div className="spec-card">
+                  <p className="spec-label">Technical Specification</p>
+                  <p className="spec-text">
+                    A programming plagiarism detection system for C and Java assignments with separate student and teacher workflows, class management, and automated grading.
+                  </p>
+                  <div className="spec-tags">
+                    <span>React</span>
+                    <span>PHP API</span>
+                    <span>MySQL</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </Tilt>
         </section>
 
         <section className="container section-space stats-section" id="about">
           <div className="stats-grid">
-            <article className="info-card stat-card">
-              <div>
-                <span className="card-label">Years of Design</span>
-                <p className="stat-value">08</p>
-              </div>
-              <p className="card-copy">
-                Refining the balance between aesthetic soul and technical precision.
-              </p>
-            </article>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10} style={{ display: 'flex', flexDirection: 'column' }}>
+              <article className="info-card stat-card pop-out-sm" style={{ flexGrow: 1 }}>
+                <div>
+                  <span className="card-label">Years of Study</span>
+                  <p className="stat-value">04</p>
+                </div>
+                <p className="card-copy">
+                  Transitioning academic foundations into full-scale digital solutions.
+                </p>
+              </article>
+            </Tilt>
 
-            <article className="quote-card">
-              <div className="quote-icon">
-                <Icon name="architecture" />
-              </div>
-              <p className="quote-text">
-                "Design is not just what it looks like... it&apos;s how it works."
-              </p>
-              <div className="quote-watermark">
-                <Icon name="pen" />
-              </div>
-            </article>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10} style={{ display: 'flex', flexDirection: 'column' }}>
+              <article className="quote-card pop-out-sm" style={{ flexGrow: 1 }}>
+                <div className="quote-icon">
+                  <Icon name="architecture" />
+                </div>
+                <p className="quote-text">
+                  "Design is not just what it looks like... it&apos;s how it works."
+                </p>
+                <div className="quote-watermark">
+                  <Icon name="pen" />
+                </div>
+              </article>
+            </Tilt>
 
-            <article className="info-card stat-card">
-              <div>
-                <span className="card-label">Global Clients</span>
-                <p className="stat-value">42</p>
-              </div>
-              <p className="card-copy">
-                From startups in motion to established brands ready for a sharper
-                digital footprint.
-              </p>
-            </article>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10} style={{ display: 'flex', flexDirection: 'column' }}>
+              <article className="info-card stat-card pop-out-sm" style={{ flexGrow: 1 }}>
+                <div>
+                  <span className="card-label">Core Projects</span>
+                  <p className="stat-value">03</p>
+                </div>
+                <p className="card-copy">
+                  Showcasing complete, end-to-end full-stack development and system design.
+                </p>
+              </article>
+            </Tilt>
           </div>
         </section>
 
         <section className="container section-space cta-section" id="contact">
-          <div className="cta-card">
-            <div className="cta-content">
-              <h3>Ready to draft your next vision?</h3>
-              <p>
-                Let&apos;s collaborate on a digital experience that defines your
-                brand with clarity, personality, and structure.
-              </p>
-              <a className="cta-link" href="/about#contact">
-                Let&apos;s Talk
-                <Icon name="send" />
-              </a>
-            </div>
+          <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+            <div className="cta-card pop-out-sm">
+              <div className="cta-content">
+                <h3>Ready to draft your next vision?</h3>
+                <p>
+                  Let&apos;s collaborate on a digital experience that defines your
+                  brand with clarity, personality, and structure.
+                </p>
+                <a className="cta-link" href="/about#contact">
+                  Let&apos;s Talk
+                  <Icon name="send" />
+                </a>
+              </div>
 
-            <svg
-              className="cta-blueprint"
-              aria-hidden="true"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <path d="M0 20 L100 20 M20 0 L20 100 M0 80 L100 80 M80 0 L80 100" />
-            </svg>
-          </div>
+              <svg
+                className="cta-blueprint"
+                aria-hidden="true"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <path d="M0 20 L100 20 M20 0 L20 100 M0 80 L100 80 M80 0 L80 100" />
+              </svg>
+            </div>
+          </Tilt>
         </section>
       </main>
 

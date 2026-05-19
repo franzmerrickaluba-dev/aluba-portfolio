@@ -1,3 +1,6 @@
+import Background3D from '../components/Background3D'
+import Tilt from 'react-parallax-tilt'
+
 type Capability = {
   title: string
   items?: string[]
@@ -220,16 +223,19 @@ export default function About() {
       </header>
 
       <main className="container about-page">
-        <section className="about-hero section-space">
-          <div className="about-hero-grid">
+        <section className="about-hero section-space" style={{ position: 'relative' }}>
+          <Background3D />
+          <div className="about-hero-grid" style={{ position: 'relative', zIndex: 1 }}>
             <div className="about-portrait-column">
-              <div className="about-portrait-frame sketchy-card">
-                <img
-                  className="about-portrait"
-                  src="/franz-merrick-aluba-profile.jpg"
-                  alt="Professional portrait of Franz Merrick Aluba in formal attire."
-                />
-              </div>
+              <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+                <div className="about-portrait-frame sketchy-card pop-out-sm">
+                  <img
+                    className="about-portrait"
+                    src="/franz-merrick-aluba-profile.jpg"
+                    alt="Professional portrait of Franz Merrick Aluba in formal attire."
+                  />
+                </div>
+              </Tilt>
 
               <div className="about-portrait-note" aria-hidden="true">
                 <span>The Designer</span>
@@ -270,17 +276,18 @@ export default function About() {
 
           <div className="about-capability-grid">
             {capabilities.map((capability) => (
-              <article
-                key={capability.title}
-                className={`about-capability-card${capability.muted ? ' is-muted' : ''}`}
-              >
-                <div className="about-capability-icon">
-                  <Icon name={capability.icon} />
-                </div>
-                <h3>{capability.title}</h3>
+              <Tilt key={capability.title} className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5} style={{ display: 'flex', flexDirection: 'column' }}>
+                <article
+                  className={`about-capability-card${capability.muted ? ' is-muted' : ''}`}
+                  style={{ flexGrow: 1 }}
+                >
+                  <div className="about-capability-icon pop-out-sm">
+                    <Icon name={capability.icon} />
+                  </div>
+                  <h3 className="pop-out">{capability.title}</h3>
 
-                {capability.items ? (
-                  <ul className="about-capability-list">
+                  {capability.items ? (
+                    <ul className="about-capability-list pop-out-sm">
                     {capability.items.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -317,6 +324,7 @@ export default function About() {
                   </div>
                 )}
               </article>
+            </Tilt>
             ))}
           </div>
         </section>
@@ -347,8 +355,9 @@ export default function About() {
               </div>
             </div>
 
-            <div className="about-form-card sketchy-card">
-              <form className="about-form">
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={3} tiltMaxAngleY={3} style={{ display: 'flex', flexDirection: 'column' }}>
+              <div className="about-form-card sketchy-card" style={{ flexGrow: 1 }}>
+                <form className="about-form pop-out-sm">
                 <div className="about-form-field">
                   <label htmlFor="name">Full Name</label>
                   <input id="name" name="name" type="text" placeholder="" />
@@ -387,6 +396,7 @@ export default function About() {
                 </div>
               </form>
             </div>
+          </Tilt>
           </div>
         </section>
       </main>

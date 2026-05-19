@@ -1,3 +1,6 @@
+import Background3D from '../components/Background3D'
+import Tilt from 'react-parallax-tilt'
+import aiAssistedLandingPage from '../assets/AI Assisted landing page.gif'
 import documentSearchPreview from '../assets/home-document-search-preview.gif'
 import promptPoliciesPreview from '../assets/home-prompt-policies-preview.gif'
 import documentIntakeUpload from '../assets/landing-document-intake-upload.png'
@@ -30,6 +33,11 @@ const featureShots = [
 ]
 
 const artifactShots = [
+  {
+    src: aiAssistedLandingPage,
+    alt: 'AI-Assisted Financial Document Processing System landing page overview.',
+    caption: 'System landing page',
+  },
   {
     src: documentSearchPreview,
     alt: 'Search preview for finding processed documents and information quickly.',
@@ -118,47 +126,53 @@ export default function AiFinancialSystem() {
       </header>
 
       <main className="container project-page">
-        <section className="section-space">
-          <div className="project-head">
-            <div>
-              <span className="project-eyebrow">Case Study / 03</span>
-              <h1 className="project-title">
-                AI-Assisted Financial
-                <span> document processing</span> for intake, validation, and search.
-              </h1>
+        <section className="section-space" style={{ position: 'relative' }}>
+          <Background3D />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div className="project-head">
+              <div>
+                <span className="project-eyebrow">Case Study / 03</span>
+                <h1 className="project-title">
+                  AI-Assisted Financial
+                  <span> document processing</span> for intake, validation, and search.
+                </h1>
+              </div>
+
+              <div className="project-sketch-note" aria-hidden="true">
+                <span>Still in progress</span>
+                <Icon name="arrow-outward" />
+              </div>
             </div>
 
-            <div className="project-sketch-note" aria-hidden="true">
-              <span>Still in progress</span>
-              <Icon name="arrow-outward" />
-            </div>
-          </div>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+              <div className="project-hero-image-frame pop-out-sm">
+                <div className="project-photo-glow" aria-hidden="true" />
+                <img
+                  className="project-hero-image project-hero-image-live"
+                  src={documentProcessingOverview}
+                  alt="AI-assisted financial document processing overview screen showing OCR, extraction, and workflow modules."
+                />
+              </div>
+            </Tilt>
 
-          <div className="project-hero-image-frame">
-            <div className="project-photo-glow" aria-hidden="true" />
-            <img
-              className="project-hero-image project-hero-image-live"
-              src={documentProcessingOverview}
-              alt="AI-assisted financial document processing overview screen showing OCR, extraction, and workflow modules."
-            />
-          </div>
 
-          <div className="project-meta-row">
-            <div>
-              <span>Role</span>
-              <p>Full-Stack Developer</p>
-            </div>
-            <div>
-              <span>Focus</span>
-              <p>Document Intelligence Workflow</p>
-            </div>
-            <div>
-              <span>Stack</span>
-              <p>React / TypeScript / FastAPI / PostgreSQL</p>
-            </div>
-            <div className="project-meta-arrow">
-              <span>OCR, extraction, and validation flow</span>
-              <Icon name="arrow-outward" />
+            <div className="project-meta-row">
+              <div>
+                <span>Role</span>
+                <p>Full-Stack Developer</p>
+              </div>
+              <div>
+                <span>Focus</span>
+                <p>Document Intelligence Workflow</p>
+              </div>
+              <div>
+                <span>Stack</span>
+                <p>React / TypeScript / FastAPI / PostgreSQL</p>
+              </div>
+              <div className="project-meta-arrow">
+                <span>OCR, extraction, and validation flow</span>
+                <Icon name="arrow-outward" />
+              </div>
             </div>
           </div>
         </section>
@@ -191,24 +205,27 @@ export default function AiFinancialSystem() {
               enough for human checking and correction.
             </p>
 
-            <div className="project-solution-frame">
-              <div className="project-photo-glow is-secondary" aria-hidden="true" />
-              <img
-                className="project-solution-image-live"
-                src={documentValidationDemo}
-                alt="Validation demo for checking processed document results."
-              />
-            </div>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+              <div className="project-solution-frame pop-out-sm">
+                <div className="project-photo-glow is-secondary" aria-hidden="true" />
+                <img
+                  className="project-solution-image-live"
+                  src={documentValidationDemo}
+                  alt="Validation demo for checking processed document results."
+                />
+              </div>
+            </Tilt>
 
             <div className="project-polaroids">
               {featureShots.map((shot, index) => (
-                <figure
-                  key={shot.caption}
-                  className={`project-polaroid project-polaroid-live${index % 2 === 1 ? ' is-offset' : ''}`}
-                >
-                  <img src={shot.src} alt={shot.alt} />
-                  <figcaption>{shot.caption}</figcaption>
-                </figure>
+                <Tilt key={shot.caption} className={`preserve-3d ${index % 2 === 1 ? 'is-offset' : ''}`} glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10}>
+                  <figure
+                    className="project-polaroid project-polaroid-live pop-out-sm"
+                  >
+                    <img src={shot.src} alt={shot.alt} />
+                    <figcaption>{shot.caption}</figcaption>
+                  </figure>
+                </Tilt>
               ))}
             </div>
           </div>
@@ -251,15 +268,16 @@ export default function AiFinancialSystem() {
 
           <div className="project-artifact-grid">
             {artifactShots.map((shot, index) => (
-              <figure
-                key={shot.caption}
-                className={`project-artifact-card project-artifact-card-live${index % 2 === 1 ? ' is-lifted' : ''}`}
-              >
-                <div className="project-artifact-frame">
-                  <img src={shot.src} alt={shot.alt} />
-                </div>
-                <figcaption>{shot.caption}</figcaption>
-              </figure>
+              <Tilt key={shot.caption} className={`preserve-3d ${index % 2 === 1 ? 'is-lifted' : ''}`} glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10}>
+                <figure
+                  className="project-artifact-card project-artifact-card-live pop-out-sm"
+                >
+                  <div className="project-artifact-frame">
+                    <img src={shot.src} alt={shot.alt} />
+                  </div>
+                  <figcaption>{shot.caption}</figcaption>
+                </figure>
+              </Tilt>
             ))}
           </div>
         </section>

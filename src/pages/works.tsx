@@ -1,8 +1,13 @@
+import { useState } from 'react'
+import Background3D from '../components/Background3D'
+import Tilt from 'react-parallax-tilt'
 import financialDocumentPreview from '../assets/landing-document-processing-overview.png'
 import fmaIcePreview from '../assets/FMAICE.gif'
 
+
 type WorkItem = {
   badge: string
+  category: string
   title: string
   description: string
   image: string
@@ -19,11 +24,12 @@ type FooterLink = {
   href: string
 }
 
-const filters = ['All Systems', 'Architecture', 'Interface', 'Motion']
+const filters = ['All Works', 'Capstone', 'OJT', 'Personal']
 
 const workItems: WorkItem[] = [
   {
-    badge: 'Full-Stack 01',
+    badge: 'Capstone Project',
+    category: 'Capstone',
     title: 'Kodi Code',
     description:
       'A programming plagiarism detection system for C and Java assignments with separate student and teacher workflows, class management, submissions, grading, and plagiarism checking.',
@@ -35,7 +41,8 @@ const workItems: WorkItem[] = [
     icon: 'arrow-outward',
   },
   {
-    badge: 'In Progress',
+    badge: 'OJT Project',
+    category: 'OJT',
     title: 'AI-Assisted Financial Document Processing System',
     description:
       'An ongoing full-stack document processing system focused on OCR, document classification, field extraction, review and correction, and AI-assisted workflows for financial records.',
@@ -49,7 +56,8 @@ const workItems: WorkItem[] = [
     icon: 'arrow-outward',
   },
   {
-    badge: 'In Progress',
+    badge: 'Personal Project',
+    category: 'Personal',
     title: 'FMA ICE',
     description:
       'A custom business management system built for my parents&apos; purified ice business, covering sales, current inventory, stock-in records, transaction reports, and an AI-assisted chat layer for business questions and data retrieval. The system is already functional, with more improvements and updates still planned.',
@@ -145,6 +153,12 @@ function Icon({
 }
 
 export default function Works() {
+  const [activeFilter, setActiveFilter] = useState('All Works')
+
+  const filteredItems = workItems.filter(
+    (item) => activeFilter === 'All Works' || item.category === activeFilter
+  )
+
   return (
     <div className="portfolio-shell" id="works-page">
       <header className="topbar">
@@ -178,8 +192,9 @@ export default function Works() {
       </header>
 
       <main className="container works-page">
-        <section className="works-hero section-space">
-          <div className="works-hero-copy">
+        <section className="works-hero section-space" style={{ position: 'relative' }}>
+          <Background3D />
+          <div className="works-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
             <span className="works-sketch-label">The Process &amp; Result</span>
             <h1 className="works-title">
               Selected Works from the <span>Digital Blueprint</span>.
@@ -192,11 +207,12 @@ export default function Works() {
 
             <div className="works-filters" aria-label="Project filters">
               <span className="works-filter-label">Filter By:</span>
-              {filters.map((filter, index) => (
+              {filters.map((filter) => (
                 <button
                   key={filter}
-                  className={index === 0 ? 'works-filter is-active' : 'works-filter'}
+                  className={activeFilter === filter ? 'works-filter is-active' : 'works-filter'}
                   type="button"
+                  onClick={() => setActiveFilter(filter)}
                 >
                   {filter}
                 </button>
@@ -207,11 +223,12 @@ export default function Works() {
 
         <section className="works-grid-section">
           <div className="works-grid">
-            {workItems.map((item, index) => (
-              <article
-                key={item.title}
-                className={`work-card${index % 2 === 1 ? ' is-offset' : ''}`}
-              >
+            {filteredItems.map((item, index) => (
+              <Tilt key={item.title} className={`preserve-3d ${index % 2 === 1 ? 'is-offset' : ''}`} glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={3} tiltMaxAngleY={3} style={{ display: 'flex', flexDirection: 'column' }}>
+                <article
+                  className="work-card pop-out-sm"
+                  style={{ flexGrow: 1 }}
+                >
                 {item.href ? (
                   <a className="work-card-link" href={item.href}>
                     <div className="work-visual">
@@ -283,6 +300,7 @@ export default function Works() {
                   ) : null}
                 </div>
               </article>
+            </Tilt>
             ))}
           </div>
         </section>
@@ -316,21 +334,23 @@ export default function Works() {
         </section>
 
         <section className="works-cta section-space">
-          <div className="works-cta-card">
-            <div className="works-cta-glow" />
-            <div className="works-cta-content">
-              <span className="works-cta-kicker">Next Milestone</span>
-              <h2>Let&apos;s blueprint your next digital venture together.</h2>
-              <a className="primary-button works-cta-button" href="mailto:franz@example.com">
-                Initiate Discussion
-              </a>
-            </div>
+          <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+            <div className="works-cta-card pop-out-sm">
+              <div className="works-cta-glow" />
+              <div className="works-cta-content">
+                <span className="works-cta-kicker">Next Milestone</span>
+                <h2>Let&apos;s blueprint your next digital venture together.</h2>
+                <a className="primary-button works-cta-button" href="mailto:franz@example.com">
+                  Initiate Discussion
+                </a>
+              </div>
 
-            <div className="works-cta-sketch" aria-hidden="true">
-              <span>Ready when you are!</span>
-              <Icon name="sketch-arrow" />
+              <div className="works-cta-sketch" aria-hidden="true">
+                <span>Ready when you are!</span>
+                <Icon name="sketch-arrow" />
+              </div>
             </div>
-          </div>
+          </Tilt>
         </section>
       </main>
 

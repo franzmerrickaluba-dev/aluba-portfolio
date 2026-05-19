@@ -1,3 +1,6 @@
+import Background3D from '../components/Background3D'
+import Tilt from 'react-parallax-tilt'
+
 type FooterLink = {
   label: string
   href: string
@@ -112,47 +115,52 @@ export default function KodiCode() {
       </header>
 
       <main className="container project-page">
-        <section className="section-space">
-          <div className="project-head">
-            <div>
-              <span className="project-eyebrow">Case Study / 01</span>
-              <h1 className="project-title">
-                Kodi Code:
-                <span> classroom workflows</span> for code-based learning.
-              </h1>
+        <section className="section-space" style={{ position: 'relative' }}>
+          <Background3D />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div className="project-head">
+              <div>
+                <span className="project-eyebrow">Case Study / 01</span>
+                <h1 className="project-title">
+                  Kodi Code:
+                  <span> classroom workflows</span> for code-based learning.
+                </h1>
+              </div>
+
+              <div className="project-sketch-note" aria-hidden="true">
+                <span>Built for teachers and students</span>
+                <Icon name="arrow-outward" />
+              </div>
             </div>
 
-            <div className="project-sketch-note" aria-hidden="true">
-              <span>Built for teachers and students</span>
-              <Icon name="arrow-outward" />
-            </div>
-          </div>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+              <div className="project-hero-image-frame pop-out-sm">
+                <div className="project-photo-glow" aria-hidden="true" />
+                <img
+                  className="project-hero-image project-hero-image-live"
+                  src="/kodicode-dashboard.jpg"
+                  alt="Kodi Code student dashboard with class search, join class action, and enrolled class cards."
+                />
+              </div>
+            </Tilt>
 
-          <div className="project-hero-image-frame">
-            <div className="project-photo-glow" aria-hidden="true" />
-            <img
-              className="project-hero-image project-hero-image-live"
-              src="/kodicode-dashboard.jpg"
-              alt="Kodi Code student dashboard with class search, join class action, and enrolled class cards."
-            />
-          </div>
-
-          <div className="project-meta-row">
-            <div>
-              <span>Role</span>
-              <p>Full-Stack Developer</p>
-            </div>
-            <div>
-              <span>Focus</span>
-              <p>Classroom Management</p>
-            </div>
-            <div>
-              <span>Stack</span>
-              <p>React / PHP API / MySQL / JWT</p>
-            </div>
-            <div className="project-meta-arrow">
-              <span>Actual project screens</span>
-              <Icon name="arrow-outward" />
+            <div className="project-meta-row">
+              <div>
+                <span>Role</span>
+                <p>Full-Stack Developer</p>
+              </div>
+              <div>
+                <span>Focus</span>
+                <p>Classroom Management</p>
+              </div>
+              <div>
+                <span>Stack</span>
+                <p>React / PHP API / MySQL / JWT</p>
+              </div>
+              <div className="project-meta-arrow">
+                <span>Actual project screens</span>
+                <Icon name="arrow-outward" />
+              </div>
             </div>
           </div>
         </section>
@@ -185,24 +193,27 @@ export default function KodiCode() {
               so the system stays practical and easy to navigate.
             </p>
 
-            <div className="project-solution-frame">
-              <div className="project-photo-glow is-secondary" aria-hidden="true" />
-              <img
-                className="project-solution-image-live"
-                src="/kodicode-teacher-dashboard.jpg"
-                alt="Kodi Code teacher dashboard with search and class management view."
-              />
-            </div>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+              <div className="project-solution-frame pop-out-sm">
+                <div className="project-photo-glow is-secondary" aria-hidden="true" />
+                <img
+                  className="project-solution-image-live"
+                  src="/kodicode-teacher-dashboard.jpg"
+                  alt="Kodi Code teacher dashboard with search and class management view."
+                />
+              </div>
+            </Tilt>
 
             <div className="project-polaroids">
               {featureShots.map((shot, index) => (
-                <figure
-                  key={shot.caption}
-                  className={`project-polaroid project-polaroid-live${index % 2 === 1 ? ' is-offset' : ''}`}
-                >
-                  <img src={shot.src} alt={shot.alt} />
-                  <figcaption>{shot.caption}</figcaption>
-                </figure>
+                <Tilt key={shot.caption} className={`preserve-3d ${index % 2 === 1 ? 'is-offset' : ''}`} glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10}>
+                  <figure
+                    className="project-polaroid project-polaroid-live pop-out-sm"
+                  >
+                    <img src={shot.src} alt={shot.alt} />
+                    <figcaption>{shot.caption}</figcaption>
+                  </figure>
+                </Tilt>
               ))}
             </div>
           </div>
@@ -245,15 +256,16 @@ export default function KodiCode() {
 
           <div className="project-artifact-grid">
             {artifactShots.map((shot, index) => (
-                <figure
-                  key={shot.caption}
-                  className={`project-artifact-card project-artifact-card-live${index % 2 === 1 ? ' is-lifted' : ''}`}
-                >
-                  <div className="project-artifact-frame">
-                    <img src={shot.src} alt={shot.alt} />
-                  </div>
-                  <figcaption>{shot.caption}</figcaption>
-                </figure>
+                <Tilt key={shot.caption} className={`preserve-3d ${index % 2 === 1 ? 'is-lifted' : ''}`} glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10}>
+                  <figure
+                    className="project-artifact-card project-artifact-card-live pop-out-sm"
+                  >
+                    <div className="project-artifact-frame">
+                      <img src={shot.src} alt={shot.alt} />
+                    </div>
+                    <figcaption>{shot.caption}</figcaption>
+                  </figure>
+                </Tilt>
               ))}
           </div>
         </section>

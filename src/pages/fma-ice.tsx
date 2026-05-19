@@ -1,3 +1,5 @@
+import Background3D from '../components/Background3D'
+import Tilt from 'react-parallax-tilt'
 import fmaIcePreview from '../assets/FMAICE.gif'
 
 type FooterLink = {
@@ -96,47 +98,52 @@ export default function FmaIce() {
       </header>
 
       <main className="container project-page">
-        <section className="section-space">
-          <div className="project-head">
-            <div>
-              <span className="project-eyebrow">Case Study / 02</span>
-              <h1 className="project-title">
-                FMA ICE:
-                <span> business operations</span> for sales and inventory flow.
-              </h1>
+        <section className="section-space" style={{ position: 'relative' }}>
+          <Background3D />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div className="project-head">
+              <div>
+                <span className="project-eyebrow">Case Study / 02</span>
+                <h1 className="project-title">
+                  FMA ICE:
+                  <span> business operations</span> for sales and inventory flow.
+                </h1>
+              </div>
+
+              <div className="project-sketch-note" aria-hidden="true">
+                <span>Built for a real family business</span>
+                <Icon name="arrow-outward" />
+              </div>
             </div>
 
-            <div className="project-sketch-note" aria-hidden="true">
-              <span>Built for a real family business</span>
-              <Icon name="arrow-outward" />
-            </div>
-          </div>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+              <div className="project-hero-image-frame pop-out-sm">
+                <div className="project-photo-glow" aria-hidden="true" />
+                <img
+                  className="project-hero-image project-hero-image-live"
+                  src={fmaIcePreview}
+                  alt="FMA ICE business system preview showing the current operational interface."
+                />
+              </div>
+            </Tilt>
 
-          <div className="project-hero-image-frame">
-            <div className="project-photo-glow" aria-hidden="true" />
-            <img
-              className="project-hero-image project-hero-image-live"
-              src={fmaIcePreview}
-              alt="FMA ICE business system preview showing the current operational interface."
-            />
-          </div>
-
-          <div className="project-meta-row">
-            <div>
-              <span>Role</span>
-              <p>Full-Stack Developer</p>
-            </div>
-            <div>
-              <span>Focus</span>
-              <p>Sales and Inventory System</p>
-            </div>
-            <div>
-              <span>Stack</span>
-              <p>React / TypeScript / Flask / PostgreSQL</p>
-            </div>
-            <div className="project-meta-arrow">
-              <span>In progress, with more updates planned</span>
-              <Icon name="arrow-outward" />
+            <div className="project-meta-row">
+              <div>
+                <span>Role</span>
+                <p>Full-Stack Developer</p>
+              </div>
+              <div>
+                <span>Focus</span>
+                <p>Sales and Inventory System</p>
+              </div>
+              <div>
+                <span>Stack</span>
+                <p>React / TypeScript / Flask / PostgreSQL</p>
+              </div>
+              <div className="project-meta-arrow">
+                <span>In progress, with more updates planned</span>
+                <Icon name="arrow-outward" />
+              </div>
             </div>
           </div>
         </section>
@@ -170,24 +177,27 @@ export default function FmaIce() {
               is still an active project with more updates and refinements coming.
             </p>
 
-            <div className="project-solution-frame">
-              <div className="project-photo-glow is-secondary" aria-hidden="true" />
-              <img
-                className="project-solution-image-live"
-                src={fmaIcePreview}
-                alt="FMA ICE business system preview showing the current operational interface."
-              />
-            </div>
+            <Tilt className="preserve-3d" glareEnable={true} glareMaxOpacity={0.15} scale={1.02} transitionSpeed={400} tiltMaxAngleX={5} tiltMaxAngleY={5}>
+              <div className="project-solution-frame pop-out-sm">
+                <div className="project-photo-glow is-secondary" aria-hidden="true" />
+                <img
+                  className="project-solution-image-live"
+                  src={fmaIcePreview}
+                  alt="FMA ICE business system preview showing the current operational interface."
+                />
+              </div>
+            </Tilt>
 
             <div className="project-polaroids">
               {featureShots.map((shot, index) => (
-                <figure
-                  key={shot.caption}
-                  className={`project-polaroid project-polaroid-live${index % 2 === 1 ? ' is-offset' : ''}`}
-                >
-                  <img src={shot.src} alt={shot.alt} />
-                  <figcaption>{shot.caption}</figcaption>
-                </figure>
+                <Tilt key={shot.caption} className={`preserve-3d ${index % 2 === 1 ? 'is-offset' : ''}`} glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10}>
+                  <figure
+                    className="project-polaroid project-polaroid-live pop-out-sm"
+                  >
+                    <img src={shot.src} alt={shot.alt} />
+                    <figcaption>{shot.caption}</figcaption>
+                  </figure>
+                </Tilt>
               ))}
             </div>
           </div>
@@ -230,15 +240,16 @@ export default function FmaIce() {
 
           <div className="project-artifact-grid">
             {featureShots.map((shot, index) => (
-              <figure
-                key={shot.caption}
-                className={`project-artifact-card project-artifact-card-live${index % 2 === 1 ? ' is-lifted' : ''}`}
-              >
-                <div className="project-artifact-frame">
-                  <img src={shot.src} alt={shot.alt} />
-                </div>
-                <figcaption>{shot.caption}</figcaption>
-              </figure>
+              <Tilt key={shot.caption} className={`preserve-3d ${index % 2 === 1 ? 'is-lifted' : ''}`} glareEnable={true} glareMaxOpacity={0.15} scale={1.05} transitionSpeed={400} tiltMaxAngleX={10} tiltMaxAngleY={10}>
+                <figure
+                  className="project-artifact-card project-artifact-card-live pop-out-sm"
+                >
+                  <div className="project-artifact-frame">
+                    <img src={shot.src} alt={shot.alt} />
+                  </div>
+                  <figcaption>{shot.caption}</figcaption>
+                </figure>
+              </Tilt>
             ))}
           </div>
         </section>

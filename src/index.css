@@ -1945,3 +1945,215 @@ img {
     flex-direction: column;
   }
 }
+
+/* Dark Mode overrides */
+:root[data-theme='dark'] {
+  --background: #111418;
+  --surface: #1e293b;
+  --surface-container-lowest: #0f172a;
+  --surface-container-low: #0f172a;
+  --surface-container: #1e293b;
+  --surface-container-high: #334155;
+  --surface-container-highest: #334155;
+  --surface-variant: #334155;
+  --on-surface: #e2e8f0;
+  --on-surface-variant: #94a3b8;
+  
+  --primary: #60a5fa;
+  --primary-dim: #3b82f6;
+  --on-primary: #0f172a;
+  --primary-container: #1e3a8a;
+  --on-primary-container: #93c5fd;
+
+  --secondary-fixed-dim: #334155;
+  --tertiary-dim: #94a3b8;
+  
+  --outline: #475569;
+  --outline-variant: #334155;
+
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 24px 50px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme='dark'] body {
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 28%),
+    linear-gradient(180deg, #111418 0%, #0f172a 100%);
+  color: var(--on-surface);
+}
+
+:root[data-theme='dark'] .topbar {
+  background: rgba(17, 20, 24, 0.82);
+  border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+:root[data-theme='dark'] .nav-link {
+  color: rgba(226, 232, 240, 0.6);
+}
+
+:root[data-theme='dark'] .hero-stack span, 
+:root[data-theme='dark'] .spec-tags span {
+  background: rgba(96, 165, 250, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: var(--primary);
+}
+
+:root[data-theme='dark'] .spec-card,
+:root[data-theme='dark'] .info-card,
+:root[data-theme='dark'] .work-badge,
+:root[data-theme='dark'] .works-filter {
+  background: rgba(30, 41, 59, 0.88);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+}
+
+:root[data-theme='dark'] .quote-card {
+  background: linear-gradient(180deg, var(--surface-container) 0%, #0f172a 100%);
+}
+
+:root[data-theme='dark'] .site-footer::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(71, 85, 105, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+:root[data-theme='dark'] .footer-copy, 
+:root[data-theme='dark'] .footer-links a {
+  color: rgba(226, 232, 240, 0.5);
+}
+
+:root[data-theme='dark'] .featured-image-frame,
+:root[data-theme='dark'] .work-visual {
+  background: var(--surface-container-low);
+}
+
+:root[data-theme='dark'] .work-visual-glow {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), transparent 60%);
+}
+
+:root[data-theme='dark'] .secondary-button {
+  background: rgba(30, 41, 59, 0.55);
+  border-color: var(--outline-variant);
+}
+
+:root[data-theme='dark'] .secondary-button:hover,
+:root[data-theme='dark'] .secondary-button:focus-visible {
+  background: var(--surface-container);
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(173, 179, 180, 0.3);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 300ms ease, background 300ms ease, border-color 300ms ease;
+  color: var(--on-surface);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+:root[data-theme='dark'] .theme-toggle {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(71, 85, 105, 0.4);
+}
+
+.theme-toggle-icon {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.theme-toggle-icon svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 400ms ease;
+}
+
+.theme-toggle-icon .sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle-icon .moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+.theme-toggle-icon.is-dark .sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+.theme-toggle-icon.is-dark .moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* 3D Pop-out Utilities */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.pop-out {
+  transform: translateZ(40px);
+}
+.pop-out-sm {
+  transform: translateZ(20px);
+}
+.pop-out-lg {
+  transform: translateZ(60px);
+}
+
+/* 
+==================================================
+  FLOATING PIXEL SPRITE
+================================================== 
+*/
+.portfolio-sprite {
+  position: fixed;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  width: 64px;
+  height: 64px;
+  z-index: 1000;
+  pointer-events: none;
+  image-rendering: pixelated; /* Essential for crisp pixel art */
+  
+  background-image: url('./assets/Portfolioanimation.png');
+  background-size: 960px 64px; /* 15 frames of 64px = 960px */
+  background-repeat: no-repeat;
+  
+  /* Animate by stepping through the 15 frames */
+  animation: play-sprite 1.2s steps(15) infinite;
+  
+  /* Scale it up so it's not tiny */
+  transform: scale(2.5);
+  transform-origin: bottom left;
+}
+
+@keyframes play-sprite {
+  from { background-position: 0px 0; }
+  to { background-position: -960px 0; }
+}
