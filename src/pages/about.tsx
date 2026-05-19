@@ -1,6 +1,6 @@
 import Background3D from '../components/Background3D'
 import Tilt from 'react-parallax-tilt'
-import { FormEvent } from 'react'
+import type { FormEvent } from 'react'
 
 type Capability = {
   title: string
